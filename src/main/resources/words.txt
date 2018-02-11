@@ -4,4 +4,7 @@ benchmarks from within an existing project, and even from within an IDE, however
 
 In all cases, the key to using JMH is enabling the annotation- or bytecode-processors to generate the synthetic benchmark code. 
 Maven archetypes are the primary mechanism used to enable this. We strongly recommend new users make use of the archetype to 
-setup the correct environment.
+setup the correct environment. 
+The methods in this class all throw a NullPointerException, if the specified array reference is null, except where noted. The documentation for the methods 
+contained in this class includes briefs description of the implementations. Such descriptions should be regarded as implementation notes, rather than parts 
+of the specification. Implementors should feel free to substitute other algorithms, so long as the specification itself is adhered to.
