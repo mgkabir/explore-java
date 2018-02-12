@@ -1,0 +1,21 @@
+******
+What is Optional in Java 8? What is the use of Optional? Give an example.
+******
+What is Spliterator in Java SE 8?Differences between Iterator and Spliterator in Java SE 8?
+******
+What is Diamond Problem in Inheritance? How Java 8 Solves this problem?
+******
+What is a functional interface? What is the usage of Functional interface ?
+******
+How will you print 10 random positive integer numbers in a sorted way using java 8?
+
+
+
+
+======================== Problem Solving ========================
+
+1. Warehouse
+	* Total number of Items in all the warehouses.
+2. WordStats
+	* Total # of words that has more than 7 characters.
+	* List top 5 frequently used words
