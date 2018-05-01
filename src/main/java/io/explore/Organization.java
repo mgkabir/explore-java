@@ -1,6 +1,5 @@
 package io.explore;
 
-import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -20,20 +19,13 @@ public class Organization {
 
 		Organization org = initializeOrg();
 
-		org.getWarehouses()
-			.stream()
-			.flatMap(w -> w.getItems().stream())
-			.map(item -> item.getName() + " : " + item.getQuantity())
-			.forEach(System.out::println);
+		org.getWarehouses().stream().flatMap(w -> w.getItems().stream()).map(item -> item.getName() + " : " + item.getQuantity()).forEach(System.out::println);
 
-		long totalItem = org.getWarehouses()
-				.stream()
-				.flatMap(w -> w.getItems().stream())
-				.mapToLong(Item::getQuantity)
-				.sum();
+		long totalItem = org.getWarehouses().stream().flatMap(w -> w.getItems().stream()).mapToLong(Item::getQuantity).sum();
 
-		System.out.println("=============\nTotal : " + totalItem);		
+		System.out.println("=============\nTotal : " + totalItem);
 		
+		assert (totalItem == 3600) : "should be 3600";
 	}
 
 	private static Organization initializeOrg() {
@@ -44,7 +36,7 @@ public class Organization {
 		Item item5 = new Item("Item5", 500);
 		Item item6 = new Item("Item6", 600);
 		Item item7 = new Item("Item7", 700);
-		Item item8 = new Item("Item8", 800);
+		Item item8 = new Item("Item8", 801);
 
 		Warehouse warehouse1 = new Warehouse("Sydney");
 		warehouse1.addItem(item1);

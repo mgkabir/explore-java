@@ -29,7 +29,7 @@ public class WordStat {
 		
 		double avgLength = Files.lines(Paths.get(file)).flatMap(line -> Arrays.stream(line.split(" "))).mapToLong(w->w.length()).average().orElse(0);
 				
-		System.out.println("Average Word Count : " + NumberFormat.getInstance().format(avgLength));
+		System.out.println("Average Word Lenght : " + NumberFormat.getInstance().format(avgLength) +" chars");
 	}
 
 }
