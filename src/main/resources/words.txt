@@ -1,10 +1,1 @@
-The recommended way to run a JMH benchmark is to use Maven to setup a standalone project that depends on the jar files of your application. 
-This approach is preferred to ensure that the benchmarks are correctly initialized and produce reliable results. It is possible to run 
-benchmarks from within an existing project, and even from within an IDE, however setup is more complex and the results are less reliable.
-
-In all cases, the key to using JMH is enabling the annotation- or bytecode-processors to generate the synthetic benchmark code. 
-Maven archetypes are the primary mechanism used to enable this. We strongly recommend new users make use of the archetype to 
-setup the correct environment. 
-The methods in this class all throw a NullPointerException, if the specified array reference is null, except where noted. The documentation for the methods 
-contained in this class includes briefs description of the implementations. Such descriptions should be regarded as implementation notes, rather than parts 
-of the specification. Implementors should feel free to substitute other algorithms, so long as the specification itself is adhered to.
+ هذا الجسر قوي هذا واحد يسمى جسر هاربور إنه أقوى من الجسر الآخر في أستراليا هذا الجسر قوي هذا واحد يسمى جسر هاربور إنه أقوى من الجسر الآخر في أستراليا
