@@ -12,7 +12,7 @@ public class WordStat {
 	public static void main(String[] args) throws IOException {
 		System.out.println("Charset : "+Charset.defaultCharset().name());
 
-		String file = "src/main/resources/words.txt";
+		String file = "src/main/resources/quran-simple.txt";
 
 		long totalWordCount = Files.lines(Paths.get(file)).flatMap(line -> Arrays.stream(line.split(" "))).count();
 		System.out.println("Total Words : " + totalWordCount);
