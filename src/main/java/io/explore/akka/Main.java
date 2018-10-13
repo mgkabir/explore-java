@@ -26,7 +26,7 @@ public class Main {
 
 		private void onMessage(Message m) {
 			counter++;
-			log.info("Counter : " + counter);
+			log.info("Counting -> " + counter);
 		}
 
 		public static Props props() {
