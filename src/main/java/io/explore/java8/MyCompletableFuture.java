@@ -5,25 +5,33 @@ import java.util.concurrent.*;
 
 public class MyCompletableFuture {
     public static void main(String[] args) throws ExecutionException, InterruptedException {
-        //thenApplyFuture();
+        thenApplyFuture();
+
         thenCombineFuture();
+
     }
 
-    private static void thenCombineFuture() throws ExecutionException, InterruptedException {
+    private static void thenCombineFuture() {
+
+        final long start = System.currentTimeMillis();
 
         ExecutorService executor = Executors.newCachedThreadPool();
 
-        long start = System.currentTimeMillis();
+
 
         CompletableFuture<Integer> completableFuture1 = CompletableFuture.supplyAsync(MyCompletableFuture::getInteger,executor);
         CompletableFuture<Integer> completableFuture2 = CompletableFuture.supplyAsync(MyCompletableFuture::getInteger,executor);
+        CompletableFuture<Integer> completableFuture3 = CompletableFuture.supplyAsync(MyCompletableFuture::getInteger,executor);
+
         System.out.println(Thread.currentThread());
 
-        CompletableFuture<Integer> combinedFuture = completableFuture1
-                .thenCombine(completableFuture2, (cf1, cf2) -> cf1 + cf2);
+        completableFuture1
+                .thenCombine(completableFuture2, (integer1, integer2) -> integer1 + integer2)
+                .thenCombine(completableFuture3, (integer2, integer3) -> integer2 + integer3)
+                .thenAccept(result-> System.out.println(Thread.currentThread()+ " : thenCombineFuture : " + result + " Time taken : "+ (System.currentTimeMillis() - start)))
+                .join();
 
-        System.out.println(Thread.currentThread()+ " : thenCombineFuture : " + combinedFuture.get() + " Time taken : "+ (System.currentTimeMillis() - start));
-
+        System.out.println("-----------------------------------------------------");
         executor.shutdown();
     }
 
@@ -34,6 +42,7 @@ public class MyCompletableFuture {
                 .thenApply(x -> x + 1)
                 .get();
         System.out.println("thenApplyFuture : " + integer);
+        System.out.println("-----------------------------------------------------");
     }
 
 
