@@ -6,9 +6,7 @@ import java.util.concurrent.*;
 public class MyCompletableFuture {
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         thenApplyFuture();
-
         thenCombineFuture();
-
     }
 
     private static void thenCombineFuture() {
@@ -17,11 +15,9 @@ public class MyCompletableFuture {
 
         ExecutorService executor = Executors.newCachedThreadPool();
 
-
-
-        CompletableFuture<Integer> completableFuture1 = CompletableFuture.supplyAsync(MyCompletableFuture::getInteger,executor);
-        CompletableFuture<Integer> completableFuture2 = CompletableFuture.supplyAsync(MyCompletableFuture::getInteger,executor);
-        CompletableFuture<Integer> completableFuture3 = CompletableFuture.supplyAsync(MyCompletableFuture::getInteger,executor);
+        CompletableFuture<Integer> completableFuture1 = CompletableFuture.supplyAsync(MyCompletableFuture::getDelayedNumber,executor);
+        CompletableFuture<Integer> completableFuture2 = CompletableFuture.supplyAsync(MyCompletableFuture::getDelayedNumber,executor);
+        CompletableFuture<Integer> completableFuture3 = CompletableFuture.supplyAsync(MyCompletableFuture::getDelayedNumber,executor);
 
         System.out.println(Thread.currentThread());
 
@@ -46,9 +42,9 @@ public class MyCompletableFuture {
     }
 
 
-    private static Integer getInteger() {
+    private static Integer getDelayedNumber() {
         int randomNum = new Random().nextInt(1000);
-        System.out.println(Thread.currentThread() + " : getInteger : "+randomNum);
+        System.out.println(Thread.currentThread() + " : getDelayedNumber : "+randomNum);
 
         try {
             TimeUnit.SECONDS.sleep(3);

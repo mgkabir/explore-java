@@ -86,13 +86,9 @@ public class HelloRxJava {
 
 		Observable<Object> obs2 = obs1.subscribeOn(Schedulers.io());
 
-		obs2.subscribe(item -> {
-							System.out.println(Thread.currentThread().getName() + " - " + item);
-						},
+		obs2.subscribe(item -> System.out.println(Thread.currentThread().getName() + " - " + item),
 						Throwable::printStackTrace,
-						() -> {
-							System.out.println("COMPLETE");
-						});
+						() -> System.out.println("COMPLETE"));
 
 		Thread.sleep(3000);
 	}
