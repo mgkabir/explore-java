@@ -6,6 +6,8 @@ import java.util.concurrent.TimeUnit;
 public class Horse {
     private String name;
     private static final long TARGET = 1_000;
+    private long FINISH_TIME;
+    private String track;
 
     public Horse(String name) {
         this.name = name;
@@ -23,11 +25,13 @@ public class Horse {
     private void runFast() {
         long total = 0;
         while(total < TARGET){
-            long sleepTime = getRandomNumberInRange(5,10);
-            System.out.println(Thread.currentThread()+ " : "+this.getName()+" : "+total);
+            long sleepTime = getRandomNumberInRange(5,20);
+            //System.out.println(Thread.currentThread()+ " : "+this.getName()+" : "+total);
             takeNap(sleepTime);
             total += sleepTime;
         }
+        FINISH_TIME = System.currentTimeMillis();
+        track = Thread.currentThread().getName();
     }
 
     private void takeNap(long sleepTime) {
@@ -46,4 +50,20 @@ public class Horse {
         return r.nextInt((max - min) + 1) + min;
     }
 
+    public long getFinishTime() {
+        return FINISH_TIME;
+    }
+
+    public String getTrack() {
+        return track;
+    }
+
+    @Override
+    public String toString() {
+        return "Horse{" +
+                "name='" + name + '\'' +
+                ", FINISH_TIME=" + FINISH_TIME +
+                ", track='" + track + '\'' +
+                '}';
+    }
 }
