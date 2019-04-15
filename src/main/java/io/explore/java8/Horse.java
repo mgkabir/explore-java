@@ -5,11 +5,12 @@ import java.util.concurrent.TimeUnit;
 
 public class Horse {
     private String name;
-    private static final long TARGET = 1_000;
     private long FINISH_TIME;
     private String track;
+    private int stepSize;
 
     public Horse(String name) {
+        this.stepSize = getRandomNumberInRange(150, 200);
         this.name = name;
     }
 
@@ -17,18 +18,17 @@ public class Horse {
         return name;
     }
 
-    public Horse goRun(){
+    public Horse goRun() {
         runFast();
         return this;
     }
 
     private void runFast() {
-        long total = 0;
-        while(total < TARGET){
-            long sleepTime = getRandomNumberInRange(5,20);
-            //System.out.println(Thread.currentThread()+ " : "+this.getName()+" : "+total);
+        long distanceCovered = 0;
+        while (distanceCovered < RacePlatform.LENGTH_OF_TRACK) {
+            long sleepTime = getRandomNumberInRange(50, 100);
             takeNap(sleepTime);
-            total += sleepTime;
+            distanceCovered += stepSize;
         }
         FINISH_TIME = System.currentTimeMillis();
         track = Thread.currentThread().getName();
@@ -52,6 +52,10 @@ public class Horse {
 
     public long getFinishTime() {
         return FINISH_TIME;
+    }
+
+    public int getStepSize() {
+        return stepSize;
     }
 
     public String getTrack() {
