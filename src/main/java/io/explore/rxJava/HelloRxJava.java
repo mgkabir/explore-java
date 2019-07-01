@@ -5,6 +5,10 @@ import java.util.Iterator;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
+import io.reactivex.disposables.Disposable;
+import org.reactivestreams.Publisher;
+
+
 import io.reactivex.Observable;
 import io.reactivex.schedulers.Schedulers;
 
@@ -14,8 +18,8 @@ public class HelloRxJava {
 		//helloObservable("RxJava", "Java8", ".NET", "PHP","Python","R");
 		//observableComplete("Dhaka", "Delhi", "Sydney","Madison","Florida","Milwaukee");
 		//rangeObservable();
-		//timeSeries();
-		createObservableDemo();
+		timeSeries();
+		//createObservableDemo();
 	}
 
 	private static void helloObservable(String... names) {
@@ -53,9 +57,9 @@ public class HelloRxJava {
 		
 		Observable<Long> t2 = Observable.interval(2L, TimeUnit.SECONDS);
 		t2.subscribe(item ->{
-			System.out.println("T2 : "+item+" "+Thread.currentThread().getName() +" "+ Thread.currentThread().isDaemon());
+			System.out.println("T2-1 : "+item+" "+Thread.currentThread().getName() +" "+ Thread.currentThread().isDaemon());
 		});
-		
+
 		Observable<Long> t3 = Observable.interval(3L, TimeUnit.SECONDS);
 		t3.subscribe(item ->{
 			System.out.println("T3 : "+item+" "+Thread.currentThread().getName() +" : "+ Thread.currentThread().isDaemon());

@@ -24,7 +24,7 @@ public class RacePlatform {
 
         List<CompletableFuture<Horse>> futures = platform.initialize();
 
-        platform.doRaceFirst(futures);
+        //platform.doRaceFirst(futures);
         platform.doRaceAll(futures);
 
     }
