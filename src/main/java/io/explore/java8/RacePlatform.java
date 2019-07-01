@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 
 public class RacePlatform {
 
-    public static final long LENGTH_OF_TRACK = 5_000;
+    public static final long LENGTH_OF_TRACK = 10_000;
     private long start = System.currentTimeMillis();
 
     public static void main(String[] args) throws Exception {
@@ -34,16 +34,14 @@ public class RacePlatform {
 
         CompletableFuture.anyOf(arrayOfCompletableFutures)
                 .thenApply(speedyOne -> (Horse) speedyOne)
-                .thenAccept(RacePlatform::printChamp)
+                .thenAccept(RacePlatform::printResult)
                 .join();
     }
 
     private void doRaceAll(List<CompletableFuture<Horse>> futures) throws InterruptedException, java.util.concurrent.ExecutionException {
 
         CompletableFuture[] arrayOfCompletableFutures = futures.toArray(new CompletableFuture[0]);
-
-        //Comparator<Horse> BY_FINISH_TIME = (horse1, horse2) -> (int) (horse1.getFinishTime() - horse2.getFinishTime());
-        Comparator<Horse> BY_FINISH_TIME = Comparator.comparingLong(Horse::getFinishTime);
+        Comparator<Horse> byFinishTime = (horse1, horse2) -> (int) (horse1.getFinishTime() - horse2.getFinishTime());
 
         List<Horse> orderedList = CompletableFuture.allOf(arrayOfCompletableFutures)
                 .thenApply(aVoid -> futures
@@ -52,12 +50,7 @@ public class RacePlatform {
                         .collect(Collectors.toList()))
                 .get()
                 .stream()
-                .sorted(BY_FINISH_TIME).collect(Collectors.toList());
-
-        printLeaderBoard(orderedList);
-    }
-
-    private void printLeaderBoard(List<Horse> orderedList) {
+                .sorted(byFinishTime).collect(Collectors.toList());
         createNewLine(1);
         System.out.printf("\t\t\t Name (Step length)\t\t\t\t Time Taken \t\t\t\t\t\t Lane ");
         Iterator<Horse> horseIt = orderedList.iterator();
@@ -91,7 +84,7 @@ public class RacePlatform {
         return futures;
     }
 
-    private static void printChamp(Horse champ) {
+    private static void printResult(Horse champ) {
         createNewLine(1);
         System.out.println("\t\t\t-----------------------------------------------------------");
         System.out.printf("\t\t\t|              Fastest horse :     %s                  | \n", champ.getName().toUpperCase());
