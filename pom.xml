@@ -71,7 +71,12 @@
                 <groupId>org.mariadb.jdbc</groupId>
     			<artifactId>mariadb-java-client</artifactId>
     			<version>${mariadb-java-client.version}</version>
-        </dependency>		
+        </dependency>
+		<dependency>
+			<groupId>com.oracle</groupId>
+			<artifactId>ojdbc7</artifactId>
+			<version>12.1.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>
